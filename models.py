@@ -6,26 +6,42 @@ db = SQLAlchemy()
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-    password_hash = db.Column(db.String(128))
-
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+    username = db.Column(db.String(64), unique=True)
+    projects = db.relationship('Project', backref='user', lazy=True)
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
-    description = db.Column(db.String(256))
+    project_type = db.Column(db.String(50), nullable=False)  # 'classification' or 'detection'
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-    user = db.relationship('User', backref=db.backref('projects', lazy=True))
 
 class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     filename = db.Column(db.String(128), nullable=False)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
+    labels = db.relationship('Label', backref='image', lazy=True)
 
-    project = db.relationship('Project', backref=db.backref('images', lazy=True))
+class Label(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    image_id = db.Column(db.Integer, db.ForeignKey('image.id'))
+    label_data = db.Column(db.Text, nullable=False)
+
+class TrainingConfig(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
+    config = db.Column(db.Text)  # JSON formatted string
+    project = db.relationship('Project', backref=db.backref('training_config', uselist=False))
+
+class Iteration(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
+    status = db.Column(db.String(20), nullable=False)  # e.g., 'pending', 'running', 'completed'
+    result = db.Column(db.Text)  # JSON formatted string with results/stats
+
+class Deployment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
+    iteration_id = db.Column(db.Integer, db.ForeignKey('iteration.id'))
+    api_key = db.Column(db.String(128), unique=True, nullable=False)
+    active = db.Column(db.Boolean, default=True)
+    iteration = db.relationship('Iteration', backref=db.backref('deployment', uselist=False))
