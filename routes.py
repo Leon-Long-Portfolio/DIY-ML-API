@@ -317,6 +317,7 @@ def delete_image(image_id):
 @main.route('/projects/<int:project_id>/iterations/<int:iteration_id>/delete', methods=['POST'])
 @login_required
 def delete_iteration(project_id, iteration_id):
+    project = Project.query.get_or_404(project_id)  # Fetch the project first
     iteration = Iteration.query.get_or_404(iteration_id)
     if iteration.project_id != project_id or project.user_id != current_user.id:
         flash("You do not have permission to delete this iteration.")
