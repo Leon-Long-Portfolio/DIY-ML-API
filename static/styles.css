@@ -1,0 +1,67 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    margin: 0;
+}
+
+.form-container, .project-list, .project, form, img {
+    background: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    width: 90%; /* Adjust width as necessary */
+    max-width: 600px; /* Keeps forms from becoming too wide on larger screens */
+}
+
+input[type="text"], input[type="password"], input[type="file"], textarea, select {
+    width: calc(100% - 22px); /* Adjusting input width to fit container padding */
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px; /* Added bottom margin for spacing */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #5cb85c;
+    color: white;
+    border: 1px solid #4cae4c; /* Add border to make the button stand out */
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 15px; /* Increase padding for better ergonomics */
+    margin-top: 10px; /* Ensure spacing above buttons */
+    margin-right: 10px; /* Spacing between buttons if inline */
+    display: inline-block; /* Ensures buttons can sit side by side */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: #4cae4c; /* Slightly darker on hover for better feedback */
+}
+
+img {
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 10px; /* Adds margin above images if any are present */
+}
+
+a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.project {
+    padding-bottom: 20px; /* Adds more space at the bottom of each project listing */
+}
+
+/* Additional spacing for forms inside the project management area */
+form {
+    margin-top: 20px;
+    clear: both; /* Clear floats if any elements inside are floated */
+}

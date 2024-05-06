@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Image</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Upload an Image for Project: {{ project.name }}</h1>
+    <form action="/projects/{{ project.id }}/upload_image" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <button type="submit">Upload Image</button>
+    </form>
+    <p><a href="{{ url_for('main.manage_project', project_id=project_id) }}">Back to Manage Project</a></p>
+</body>
+</html>

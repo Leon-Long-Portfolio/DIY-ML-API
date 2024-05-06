@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deploy Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Deploy Model for Project: {{ project.name }}</h1>
+    <form method="POST">
+        <label for="model_choice">Select Model to Deploy:</label>
+        <select id="model_choice" name="model_choice">
+            <option value="default">Default Model</option>
+            {% for iteration in iterations %}
+            <option value="{{ iteration.id }}">Iteration {{ iteration.id }} - {{ iteration.status }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Deploy Model</button>
+    </form>
+    <p><a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a></p>
+</body>
+</html>

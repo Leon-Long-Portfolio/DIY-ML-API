@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Iteration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Start Iteration for {{ project.name }}</h1>
+    <form method="POST" action="{{ url_for('main.start_iteration', project_id=project.id) }}">
+        <button type="submit">Start New Iteration</button>
+    </form>
+    <a href="{{ url_for('main.manage_project', project_id=project.id) }}">Back to Project Management</a>
+</body>
+</html>

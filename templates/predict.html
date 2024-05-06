@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Predict</h1>
+    <a href="{{ url_for('main.manage_project', project_id=project_id) }}">Back to Manage Project</a>
+    {% for image in images %}
+        <div>
+            <img src="{{ url_for('static', filename=image.filename) }}" alt="Image to predict">
+            <form method="POST" action="{{ url_for('main.predict', project_id=project_id) }}">
+                <input type="hidden" name="image_id" value="{{ image.id }}">
+                <button type="submit">Predict</button>
+            </form>
+        </div>
+    {% endfor %}
+</body>
+</html>

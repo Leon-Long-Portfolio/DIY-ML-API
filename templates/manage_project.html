@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Manage Project: {{ project.name }}</h1>
+    <a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a>
+    <div>
+        <h2>Images</h2>
+        {% for image in images %}
+            <div>{{ image.filename }}</div>
+            <form method="POST" action="{{ url_for('main.delete_image', image_id=image.id) }}">
+                <button type="submit">Delete Image</button>
+            </form>
+        {% endfor %}
+        <form method="POST" action="{{ url_for('main.upload_image', project_id=project.id) }}" enctype="multipart/form-data">
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image" required>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+    <div>
+        <a href="{{ url_for('main.configure_training', project_id=project.id) }}">Configure Training</a>
+        <a href="{{ url_for('main.start_iteration', project_id=project.id) }}">Start Training</a>
+        <a href="{{ url_for('main.deploy_model', project_id=project.id) }}">Deploy Model</a>
+    </div>
+</body>
+</html>

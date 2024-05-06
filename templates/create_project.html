@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Create Project</h1>
+    <div class="form-container">
+        <form method="POST" action="{{ url_for('main.create_project') }}">
+            <label for="name">Project Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="project_type">Project Type:</label>
+            <select id="project_type" name="project_type">
+                <option value="classification">Classification</option>
+                <option value="detection">Detection</option>
+            </select>
+
+            <button type="submit">Create Project</button>
+        </form>
+    </div>
+    <a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

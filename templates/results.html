@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Prediction Results</h1>
+    {% for pred in predictions %}
+        <p>{{ pred[1] }}: {{ pred[2] * 100 | round(2) }}%</p>
+    {% endfor %}
+    <a href="{{ url_for('main.manage_project', project_id=project_id) }}">Back to Project</a>
+</body>
+</html>
