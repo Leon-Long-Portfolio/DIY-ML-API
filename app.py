@@ -10,6 +10,8 @@ login_manager = LoginManager()
 def create_app(config_class=DevelopmentConfig):
     app = Flask(__name__)
     app.config.from_object(config_class)
+    app.config['UPLOAD_FOLDER'] = 'uploads' 
+
 
     # Initialize extensions
     db.init_app(app)

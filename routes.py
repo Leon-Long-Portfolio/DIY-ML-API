@@ -1,7 +1,7 @@
-from flask import Blueprint, request, jsonify
-from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User, Project, Image
+from flask import Blueprint, request, jsonify, current_app
 from werkzeug.utils import secure_filename
+import os
+from models import User, db, Project, Image
 
 main = Blueprint('main', __name__)
 
@@ -49,7 +49,7 @@ def upload_image(project_id):
         return jsonify({'error': 'No selected file'}), 400
     if file:
         filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
         new_image = Image(filename=filename, project_id=project_id)
         db.session.add(new_image)
         db.session.commit()
