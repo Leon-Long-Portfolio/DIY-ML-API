@@ -1,14 +1,12 @@
+# test_app.py
 import os
 import tempfile
 import pytest
 from flask import template_rendered
 from contextlib import contextmanager
 from werkzeug.security import generate_password_hash
-from models import db, User, Project, Image
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from app import create_app
+from models import db, User, Project, Image
 
 @pytest.fixture
 def client():
