@@ -21,6 +21,10 @@ Welcome to Flask ML Project Manager! This application provides a platform for ma
 
 ## Installation
 
+1. Clone the repository: `git clone https://github.com/Leon-Long-Portfolio/DIY-ML-API`
+2. Navigate to Project Directory: `cd DIY-ML-API`
+3. Build Docker Image: `docker build -t my-python-app .`
+4. Run the Docker Container: `docker run -p 5001:5000 my-python-app`
 5. Access the application in your web browser at `http://localhost:5000`.
 
 ## Usage
