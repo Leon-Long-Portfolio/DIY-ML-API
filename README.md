@@ -4,6 +4,14 @@
 
 Welcome to Flask ML Project Manager! This application provides a platform for managing machine learning projects, allowing users to log in, create and manage projects, upload images for classification or object detection, and even upload their own models for training and deployment within the application.
 
+## Video Demonstration
+
+
+
+https://github.com/Leon-Long-Portfolio/DIY-ML-API/assets/153784947/dd7eab49-3a06-4782-94c5-1781930b4278
+
+
+
 ## Features
 
 - **User Authentication**: Users can register, log in, and log out securely.
