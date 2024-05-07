@@ -39,10 +39,90 @@ Welcome to Flask ML Project Manager! This application provides a platform for ma
 
 ### RESTFUL API Definitions
 
+### Authentication and User Management
 
+- `POST /login`: Authenticate and log in a user.
+- `POST /register`: Register a new user.
+- `POST /logout`: Log out the current user.
+
+### Project Management
+
+- `GET /dashboard`: Display the dashboard with user projects and analyses.
+- `POST /projects/create`: Create a new project.
+- `GET /projects/<int:project_id>/manage`: Manage a specific project.
+- `POST /projects/<int:project_id>`: Delete a specific project.
+
+### Image Management
+
+- `POST /projects/<int:project_id>/upload_image`: Upload an image to a project.
+- `GET /projects/<int:project_id>/images`: Retrieve all images associated with a project.
+- `POST /images/<int:image_id>/delete`: Delete a specific image.
+
+### Model Operations
+
+- `POST /upload_model`: Upload a custom ML model.
+- `GET /projects/<int:project_id>/predict`: Display the prediction form.
+- `POST /projects/<int:project_id>/predict`: Perform predictions using the deployed model.
+- `POST /projects/<int:project_id>/deploy_model`: Deploy a model for a project.
+
+### Training and Iterations
+
+- `POST /projects/<int:project_id>/start_iteration`: Start a new training iteration for a project.
+- `GET /projects/<int:project_id>/iterations/<int:iteration_id>`: Retrieve specific iteration details.
+- `POST /projects/<int:project_id>/iterations/<int:iteration_id>/delete`: Delete a specific iteration.
+
+### Miscellaneous
+
+- `POST /inference`: Perform inference using an API key.
+- `GET /projects/<int:user_id>`: Retrieve all projects for a specific user.
 
 ### SQL Database Design
 
+### Tables
+
+#### `User`
+- `id`: Integer, primary key
+- `username`: String(64), unique
+- `password_hash`: String(128)
+- Relationships: One-to-many with `Project`
+
+#### `Project`
+- `id`: Integer, primary key
+- `name`: String(128), not nullable
+- `project_type`: String(50), not nullable
+- `description`: Text, nullable
+- `user_id`: Integer, foreign key to `User`
+- Relationships: One-to-many with `Image`, `TrainingConfig`, `Iteration`, `Deployment`
+
+#### `Image`
+- `id`: Integer, primary key
+- `filename`: String(128), not nullable
+- `project_id`: Integer, foreign key to `Project`
+- Relationships: One-to-many with `Label`
+
+#### `Label`
+- `id`: Integer, primary key
+- `image_id`: Integer, foreign key to `Image`
+- `label_data`: Text, not nullable
+
+#### `TrainingConfig`
+- `id`: Integer, primary key
+- `project_id`: Integer, foreign key to `Project`
+- `config`: Text
+
+#### `Iteration`
+- `id`: Integer, primary key
+- `project_id`: Integer, foreign key to `Project`
+- `status`: String(20), not nullable
+- `result`: Text
+
+#### `Deployment`
+- `id`: Integer, primary key
+- `project_id`: Integer, foreign key to `Project`
+- `iteration_id`: Integer, foreign key to `Iteration`, nullable
+- `api_key`: String(128), unique, not nullable
+- `active`: Boolean, default true
+- Relationships: One-to-one with `Iteration`
 
 ## Project Development
 
