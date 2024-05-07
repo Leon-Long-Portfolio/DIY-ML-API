@@ -2,20 +2,52 @@
 
 ## Project Overview
 
-1. RESTFUL APIs for DIY ML API App includes User Management, Project Management, Image Uploader, Training Configuration, and Training Analysis.
-2. Each module is tested utilizing the test_app.
-3. Database: Implemented relational-based SQL
-4. Queueing and Multi-threading capacity for asynchronous activity
+Welcome to Flask ML Project Manager! This application provides a platform for managing machine learning projects, allowing users to log in, create and manage projects, upload images for classification or object detection, and even upload their own models for training and deployment within the application.
+
+## Features
+
+- **User Authentication**: Users can register, log in, and log out securely.
+- **Project Management**: Users can create, view, update, and delete their machine learning projects.
+- **Image Upload**: Users can upload images for classification or object detection tasks within their projects.
+- **Model Upload and Deployment**: Users can upload their own machine learning models for training and deployment within the application.
+
+## Technologies Used
+
+- **Flask**: Flask is used as the web framework for building the application.
+- **SQLAlchemy**: SQLAlchemy is used as the ORM (Object-Relational Mapping) tool for database interactions.
+- **SQLite**: SQLite is used as the database system for storing user data, project information, and uploaded images/models.
+- **TensorFlow/Keras**: TensorFlow and Keras are used for machine learning model training and deployment.
+- **HTML/CSS/JavaScript**: Frontend components are built using these web technologies.
+
+## Installation
+
+5. Access the application in your web browser at `http://localhost:5000`.
+
+## Usage
+
+1. Register or log in to your account.
+2. Create a new project or select an existing project.
+3. Upload images for classification or object detection tasks.
+4. Optionally, upload your own machine learning model for training and deployment.
+5. View project details, manage projects, and deploy models as needed.
 
 ## Project Design
 
 ### RESTFUL API Definitions
 
 
+
 ### SQL Database Design
 
 
-## Project Planning
+## Project Development
+
+### Project Requirements
+
+1. RESTFUL APIs for DIY ML API App includes User Management, Project Management, Image Uploader, Training Configuration, and Training Analysis.
+2. Each module is tested utilizing the test_app.
+3. Database: Implemented relational-based SQL
+4. Queueing and Multi-threading capacity for asynchronous activity
 
 ### Phase 1 - Software Development: REST APIs and Modularity
 
@@ -137,3 +169,12 @@ SQL databases provide greater support for structured data handling, complex quer
 ### Phase 3 - Queue Implementation
 
 ### Phase 4 - Data Protection
+
+## Contributors
+
+- [Leon Long](https://github.com/Leon-Long-Portfolio)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
