@@ -258,7 +258,38 @@ SQL databases provide greater support for structured data handling, complex quer
 
 ### Phase 3 - Queue Implementation
 
+The application utilizes a queue mechanism to handle long-running tasks such as image processing and model training. This improves the responsiveness of the application by decoupling compute-intensive tasks from the request-response cycle. For the queue implementation, we use Redis along with RQ (Redis Queue) to manage background jobs.
+
+#### Integration
+
+1. **Enqueueing Jobs:** Tasks such as training machine learning models are enqueued as background jobs. Users can submit a training request which the system will enqueue.
+2. **Worker Processes:** Dedicated worker processes are responsible for executing the tasks in the queue. They run independently of the web server processes.
+3. **Job Monitoring:** Users can monitor the status of enqueued jobs through the application's dashboard, which fetches the job status from Redis.
+
 ### Phase 4 - Data Protection
+
+#### Security Configurations
+
+1. **Environment Variables:** Sensitive information such as database URIs and secret keys are stored in environment variables, ensuring they are not hard-coded into the application's source code.
+2. **Secure Password Storage:** The application uses Werkzeug's security functions to hash and check passwords securely.
+
+#### User Authentication
+
+1. **Flask-Login:** This extension provides user session management. It handles the common tasks of logging in, logging out, and remembering users' sessions over extended periods of time.
+2. **Login Required:** Most routes in the application are decorated with `@login_required` to ensure that only authenticated users can access certain views.
+
+#### Data Validation
+
+1. **Input Sanitization:** User inputs, especially file uploads, are sanitized to prevent the execution of malicious files. File names are secured using Werkzeug's `secure_filename` function before saving them to the server.
+2. **Content-Type Validation:** The application validates the MIME types of uploaded files to ensure they are images before processing them.
+
+#### HTTPS
+
+1. **SSL/TLS:** For production, it is recommended to serve the application over HTTPS using SSL/TLS to encrypt the data transmitted between the client and server, protecting it from interception.
+
+#### API Key Management
+
+1. **API Keys:** The application generates unique API keys for each deployment, which are required to access the inference API. This provides an additional layer of security by ensuring that only authorized requests can invoke the API.
 
 ## Contributors
 
