@@ -78,8 +78,6 @@ Welcome to Flask ML Project Manager! This application provides a platform for ma
 
 ### SQL Database Design
 
-### Tables
-
 #### `User`
 - `id`: Integer, primary key
 - `username`: String(64), unique
