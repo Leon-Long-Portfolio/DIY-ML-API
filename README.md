@@ -8,7 +8,7 @@ Welcome to Flask ML Project Manager! This application provides a platform for ma
 
 
 
-https://github.com/Leon-Long-Portfolio/DIY-ML-API/assets/153784947/dd7eab49-3a06-4782-94c5-1781930b4278
+https://github.com/Leon-Long-Portfolio/DIY-ML-API/assets/153784947/44b4436e-a362-4e6c-932d-adfa87259f5b
 
 
 
